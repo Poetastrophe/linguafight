@@ -12,7 +12,7 @@ pub fn BinomialPermutations(comptime N: comptime_int) type {
 
         pub fn init(self: *Self) void {
             var result: [factorial(N) * N][N]u8 = undefined;
-            print("\nfacn * n:{}\n", .{factorial(N) * N});
+            // print("\nfacn * n:{}\n", .{factorial(N) * N});
             const emptySentinelArr = [_]u8{emptySentinel} ** N;
             var raw_permutations: [factorial(N)][N]u8 = .{undefined} ** factorial(N);
             for (raw_permutations) |_, i| {
@@ -24,17 +24,17 @@ pub fn BinomialPermutations(comptime N: comptime_int) type {
             while (iter.next()) |unpack| : (i += 1) {
                 raw_permutations[i] = unpack;
             }
-            print("\nraw_premutations\n{any}", .{raw_permutations});
+            // print("\nraw_premutations\n{any}", .{raw_permutations});
 
             var number_of_copys: u64 = 0;
             while (number_of_copys < N) : (number_of_copys += 1) {
-                print("\nraw_perm*numberofcopy:{},result.len:{}\n", .{ raw_permutations.len * number_of_copys, result.len });
+                // print("\nraw_perm*numberofcopy:{},result.len:{}\n", .{ raw_permutations.len * number_of_copys, result.len });
 
                 std.mem.copy([N]u8, result[number_of_copys * factorial(N) .. factorial(N) * N], raw_permutations[0..factorial(N)]);
                 for (raw_permutations) |_, k| {
-                    print("\nbefore:{any}\n", .{raw_permutations[k]});
+                    // print("\nbefore:{any}\n", .{raw_permutations[k]});
                     raw_permutations[k][N - number_of_copys - 1] = emptySentinel;
-                    print("\nafter:{any}\n", .{raw_permutations[k]});
+                    // print("\nafter:{any}\n", .{raw_permutations[k]});
                 }
             }
 
@@ -81,6 +81,7 @@ fn stripLastDigitAndSort(from: [][]u8) void {
     }
     std.sort.sort([]u8, from, {}, compareSlices);
 }
+
 fn compareArraysOfSize(comptime N: u64) type {
     return struct {
         fn compareArrays(_: void, a: [N]u8, b: [N]u8) Order {
@@ -104,6 +105,7 @@ fn compareArraysOfSize(comptime N: u64) type {
         }
     };
 }
+
 fn compareSlices(_: void, a: []u8, b: []u8) Order {
     for (if (a.len < b.len) a else b) |_, i| {
         if (a[i] < b[i]) {
@@ -143,8 +145,10 @@ fn factorial(n: u64) u64 {
     }
     return prod;
 }
+
 test "createSmallBinomIter" {
     var bp = BinomialPermutations(4){};
     bp.init();
-    print("\nhello:{any}\n", .{bp.combinations});
+
+    // print("\nhello:{any}\n", .{bp.combinations});
 }

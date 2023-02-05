@@ -20,11 +20,12 @@ pub fn HeapsAlgorithm(comptime N: u64) type {
             }
             break :iota arrtmp;
         },
+
         pub fn next(self: *Self) ?[N]u8 {
             var res: [N]u8 = undefined;
             if (self.is_first_iter) {
                 self.is_first_iter = false;
-                std.mem.copysss(u8, res[0..N], self.arr[0..N]);
+                std.mem.copy(u8, res[0..N], self.arr[0..N]);
                 return res;
             }
             var i: u64 = 1;
@@ -120,14 +121,91 @@ fn correctness_test(comptime NUMBER: u64) !void {
 test "speedtest" {
     var unique_i: u64 = 0;
     var iterator01 = HeapsAlgorithm(7){};
-    const start = std.time.nanoTimestamp();
+    // const start = std.time.nanoTimestamp();
     while (iterator01.next()) |elem| : (unique_i += 1) {
         _ = elem;
         // print("\n{any}\n",.{elem});
     }
-    const end = std.time.nanoTimestamp();
-    const seconds_with_two_significant_digits = @intToFloat(f128, try std.math.divFloor(i128, (end - start), 1000)) / 1000000.0;
-    print("\ntime_passed = {}\n", .{seconds_with_two_significant_digits});
+    // const end = std.time.nanoTimestamp();
+    // const seconds_with_two_significant_digits = @intToFloat(f128, try std.math.divFloor(i128, (end - start), 1000)) / 1000000.0;
+    // print("\ntime_passed = {}\n", .{seconds_with_two_significant_digits});
+}
+
+test "speedtestvsbenchmark" {
+    const size = 7;
+    {
+        var unique_i: u64 = 0;
+        var iterator01 = HeapsAlgorithm(size){};
+        // const start = std.time.nanoTimestamp();
+        while (iterator01.next()) |elem| : (unique_i += 1) {
+            _ = elem;
+            // print("\n{any}\n", .{elem});
+        }
+        // const end = std.time.nanoTimestamp();
+        // const seconds_with_two_significant_digits = @intToFloat(f128, try std.math.divFloor(i128, (end - start), 1000)) / 1000000.0;
+        // print("\ntime_passed for heapsalgorithm = {}\n", .{seconds_with_two_significant_digits});
+    }
+    {
+        var unique_i: u64 = 0;
+        var iterator01 = NaiveBenchmark(size){};
+        // const start = std.time.nanoTimestamp();
+        while (iterator01.next()) |elem| : (unique_i += 1) {
+            _ = elem;
+            // print("\n{any}\n", .{elem});
+        }
+        // const end = std.time.nanoTimestamp();
+        // const seconds_with_two_significant_digits = @intToFloat(f128, try std.math.divFloor(i128, (end - start), 1000)) / 1000000.0;
+        // print("\ntime_passed for naivebenchmark = {}\n", .{seconds_with_two_significant_digits});
+    }
+}
+
+pub fn NaiveBenchmark(comptime N: u8) type {
+    return struct {
+        const Self = @This();
+        arr: [N]u8 = [_]u8{0} ** N,
+
+        fn has_unique_indices(self: *const Self) bool {
+            for (self.arr) |_, i| {
+                var count: u64 = 0;
+                for (self.arr) |elem| {
+                    if (elem == i) {
+                        count += 1;
+                    }
+                }
+                if (count != 1) {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        //TODO rework this
+        pub fn addOne(self: *Self) void {
+            if (std.mem.eql(u8, self.arr[0..N], ([_]u8{N - 1} ** N)[0..N])) {
+                return;
+            }
+            var rev_i = self.arr.len - 1;
+            while (true) {
+                self.arr[rev_i] = (self.arr[rev_i] + 1) % N;
+                if (self.arr[rev_i] == 0 and rev_i != 0) {
+                    rev_i -= 1;
+                } else {
+                    return;
+                }
+            }
+        }
+
+        pub fn next(self: *Self) ?[N]u8 {
+            self.addOne();
+            while (!self.has_unique_indices()) {
+                if (std.mem.eql(u8, self.arr[0..N], ([_]u8{N - 1} ** N)[0..N])) {
+                    return null;
+                }
+                self.addOne();
+            }
+            return self.arr;
+        }
+    };
 }
 
 test "test correctness for small n" {

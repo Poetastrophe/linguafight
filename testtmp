@@ -1,0 +1,213 @@
+1/10 test "boardStringToBoard"... letter:115
+letter:108
+letter:117
+letter:103
+letter:116
+letter:101
+letter:114
+letter:112
+letter:117
+letter:104
+letter:101
+letter:106
+letter:103
+letter:114
+letter:97
+letter:118
+letter:105
+letter:101
+letter:111
+letter:108
+letter:105
+
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _ _ _ L _ _ _ _
+_ _ _ _ I _ _ _ _ _ _ _ _ V _
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ s _ _ _ _ _ _ _
+_ _ _ _ _ _ l u g t e r _ _ _
+_ _ _ _ _ _ _ p _ _ _ u _ _ _
+_ _ _ _ _ _ h e j _ _ g _ _ _
+_ _ _ _ _ _ _ r a v i e o l i
+_ _ _ _ _ _ _ _ _ W _ _ _ _ _
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _ _ _ _ _ _ V _
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _ _ _ _ W _ _ _
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+OK
+2/10 test "isInsertionTooLong"... letter:97
+letter:98
+letter:99
+letter:100
+letter:115
+letter:101
+letter:108
+letter:117
+letter:103
+letter:116
+letter:101
+letter:114
+letter:102
+letter:112
+letter:117
+letter:103
+letter:104
+letter:101
+letter:106
+letter:103
+letter:104
+letter:114
+letter:97
+letter:118
+letter:105
+letter:101
+letter:111
+letter:108
+letter:105
+letter:105
+letter:107
+letter:108
+letter:109
+OK
+3/10 test "isBoardConnected middle"... OK
+4/10 test "isBoardConnectedRandom"... letter:104
+letter:118
+letter:104
+letter:101
+letter:106
+letter:115
+letter:97
+letter:114
+letter:100
+letter:97
+letter:103
+letter:115
+OK
+5/10 test "to_string"... letter:97
+letter:98
+letter:99
+letter:100
+letter:115
+letter:101
+letter:108
+letter:117
+letter:103
+letter:116
+letter:101
+letter:114
+letter:102
+letter:112
+letter:117
+letter:103
+letter:104
+letter:101
+letter:106
+letter:103
+letter:104
+letter:114
+letter:97
+letter:118
+letter:105
+letter:101
+letter:111
+letter:108
+letter:105
+letter:105
+letter:107
+letter:108
+letter:109
+To string
+
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+a _ _ _ _ _ _ _ _ _ L _ _ _ _
+b _ _ _ I _ _ _ _ _ _ _ _ V _
+c _ _ _ _ _ _ _ _ _ _ _ _ _ _
+d _ _ _ _ _ _ s _ _ _ _ _ _ _
+e _ _ _ _ _ l u g t e r _ _ _
+f _ _ _ _ _ _ p _ _ _ u _ _ _
+g _ _ _ _ _ h e j _ _ g _ _ _
+h _ _ _ _ _ _ r a v i e o l i
+i _ _ _ _ _ _ _ _ W _ _ _ _ _
+k _ _ _ _ _ _ _ _ _ _ _ _ _ _
+l _ _ _ _ _ _ _ _ _ _ _ _ V _
+m _ _ _ _ _ _ _ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _ _ _ _ W _ _ _
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+OK
+6/10 test "insert"... letter:195
+letter:97
+letter:98
+letter:99
+letter:100
+letter:115
+letter:101
+letter:108
+letter:117
+letter:103
+letter:116
+letter:101
+letter:114
+letter:102
+letter:112
+letter:117
+letter:103
+letter:104
+letter:101
+letter:106
+letter:103
+letter:104
+letter:114
+letter:97
+letter:118
+letter:105
+letter:101
+letter:111
+letter:108
+letter:105
+letter:105
+letter:107
+letter:108
+letter:109
+brÃ¸dlen:4brÃ¸dlen:5wftostring:450
+wftostring:
+Ã _ _ _ _ _ _ _ _ _ _ _ _ _ _
+a _ _ _ _ _ _ _ _ _ L _ _ _ _
+b _ _ _ I _ _ _ _ _ _ _ _ V _
+c _ _ _ _ _ _ _ _ _ _ _ _ _ _
+d _ _ _ _ _ _ s _ _ _ _ _ _ _
+e _ _ _ _ _ l u g t e r _ _ _
+f _ _ _ _ _ _ p _ _ _ u _ _ _
+g _ _ _ _ _ h e j _ _ g _ _ _
+h _ _ _ _ _ _ r a v i e o l i
+i _ _ _ _ _ _ _ _ W _ b _ _ _
+k _ _ _ _ _ _ _ _ _ _ r _ _ _
+l _ _ _ _ _ _ _ _ _ _ Ã _ V _
+m _ _ _ _ _ _ _ _ _ _ ¸ _ _ _
+_ _ _ _ _ _ _ _ _ _ _ d _ _ _
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+END
+expected_boardstring:452
+expected_boardstring:
+Ã¸ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+a _ _ _ _ _ _ _ _ _ L _ _ _ _
+b _ _ _ I _ _ _ _ _ _ _ _ V _
+c _ _ _ _ _ _ _ _ _ _ _ _ _ _
+d _ _ _ _ _ _ s _ _ _ _ _ _ _
+e _ _ _ _ _ l u g t e r _ _ _
+f _ _ _ _ _ _ p _ _ _ u _ _ _
+g _ _ _ _ _ h e j _ _ g _ _ _
+h _ _ _ _ _ _ r a v i e o l i
+i _ _ _ _ _ _ _ _ W _ b _ _ _
+k _ _ _ _ _ _ _ _ _ _ r _ _ _
+l _ _ _ _ _ _ _ _ _ _ Ã¸ _ V _
+m _ _ _ _ _ _ _ _ _ _ d _ _ _
+_ _ _ _ _ _ _ _ _ _ _ W _ _ _
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+END
+OK
+7/10 test "extractWord"... OK
+8/10 test "getWords"... OK
+9/10 test "letterToPoints"... OK
+10/10 test "getPoints"... OK
+All 10 tests passed.
